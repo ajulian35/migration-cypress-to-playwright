@@ -1,0 +1,19 @@
+{
+  "name": "migration_cypress_to_playwright",
+  "version": "1.0.0",
+  "description": "Cypress to Playwright migration project",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:headed": "cypress run --headed",
+    "cy:run:spec": "cypress run --spec"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "cypress": "^15.20.0",
+    "typescript": "^7.0.2"
+  }
+}
