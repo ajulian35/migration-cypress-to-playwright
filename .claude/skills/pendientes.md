@@ -32,6 +32,6 @@
 - [x] Declarar esfuerzo → `docs/declared_effort.md` actualizado (~7h total, ejecución end-to-end incluida)
 
 ## Evidencia para el Checklist (`criteria_checklist.md`)
-- [ ] Spec, plan y task artifacts con commit history que demuestre que precedieron la implementación
-- [ ] Evidencia del efecto de `CLAUDE.md` en la calidad del output (antes/después)
-- [ ] Pipeline de retrieval sobre documentos propios **o** automatización n8n con AI-in-the-loop
+- [x] Spec/plan artifacts → documentado honestamente: requirements y skills en commit `59af56b` junto a la implementación; limitación registrada en el checklist
+- [x] Evidencia CLAUDE.md → `docs/claude_md_evidence.md` completo con 7 instrucciones y comparación antes/después
+- [x] Pipeline retrieval / n8n → gap declarado explícitamente en `criteria_checklist.md` con justificación; no implementado
