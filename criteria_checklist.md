@@ -35,7 +35,7 @@ regardless of what you built.
 ## Communicate
 
 - [x] One slide pitching the solution to client stakeholders.
-  → `docs/AI_Capstone_Filled_L1.pptx` and `docs/stakeholder_slide.md`
+  → `docs/AI_Capstone_Template_L1 op 4.pptx` and `docs/stakeholder_slide.md`
 - [ ] A short demo (recording or transcript), including at least one case it handles badly.
   → **Descoped** per user decision. The failure cases are documented in `docs/failure_analysis.md` with specific inputs and outputs.
 - [x] Declared-effort statement: approximate hours and what you cut.
