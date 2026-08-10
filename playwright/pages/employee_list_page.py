@@ -16,7 +16,7 @@ class EmployeeListPage(BasePage):
     def search_by_name(self, name: str):
         self.page.fill(self.NAME_INPUT, name)
         self.page.wait_for_selector('[role="listbox"] [role="option"]', timeout=5000)
-        self.page.locator('[role="listbox"] [role="option"]').first.click()
+        self.page.locator('[role="listbox"] [role="option"]').filter(has_text=name).first.click()
 
     def click_search(self):
         self.page.click(self.SEARCH_BUTTON)

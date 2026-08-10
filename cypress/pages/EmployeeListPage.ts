@@ -6,7 +6,7 @@ export class EmployeeListPage extends BasePage {
   searchByName(name: string): void {
     cy.get('input[placeholder="Type for hints..."]').clear().type(name);
     // Wait for autocomplete dropdown then select the first matching option
-    cy.get('[role="listbox"] [role="option"]').first().click();
+    cy.get('[role="listbox"] [role="option"]').contains(name).click();
   }
 
   clickSearch(): void {

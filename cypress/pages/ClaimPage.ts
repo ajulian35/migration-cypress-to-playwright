@@ -35,11 +35,11 @@ export class ClaimPage extends BasePage {
 
   addExpense(expenseType: string, date: string, amount: string): void {
     cy.contains('button', 'Add').first().click();
-    cy.get('[role="dialog"]').within(() => {
+    cy.get('[role="dialog"]').last().within(() => {
       cy.get('.oxd-select-wrapper').click();
     });
     cy.get('[role="listbox"] [role="option"]').contains(expenseType).click();
-    cy.get('[role="dialog"]').within(() => {
+    cy.get('[role="dialog"]').last().within(() => {
       cy.get('input[placeholder="yyyy-dd-mm"]').type(date);
       cy.get('input').last().clear().type(amount);
       cy.contains('button', 'Save').click();
@@ -49,7 +49,10 @@ export class ClaimPage extends BasePage {
 
   clickSubmitClaim(): void {
     cy.contains('button', 'Submit').click();
-    cy.contains('input[disabled]', 'Submitted').should('exist');
+    cy.get('input[disabled]').should(($inputs) => {
+      const values = [...$inputs].map((el) => (el as HTMLInputElement).value);
+      expect(values).to.include('Submitted');
+    });
   }
 
   clickSearch(): void {
