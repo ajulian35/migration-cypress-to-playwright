@@ -2,7 +2,7 @@ node_modules/
 reports/
 cypress/videos/
 cypress/screenshots/
-.env
+# .env intentionally tracked — credentials are public OrangeHRM demo values
 
 # Python
 __pycache__/
