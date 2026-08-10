@@ -28,7 +28,7 @@
 - [x] Registrar errores que el AI generó y corregidos → `docs/ai_review.md` (3 errores documentados + actualizado con fix de REQ-006)
 - [x] Failure analysis → `docs/failure_analysis.md` completo (5 casos con inputs, outputs, root cause; REQ-006 marcado como resuelto)
 - [x] Mejora medida → `docs/measured_improvement.md`: fix REQ-006 autocomplete (fixed sleep → condition wait + name filter); FAILED → PASSED verificado
-- [x] Slide de presentación → `docs/AI_Capstone_Filled_L1.pptx` (174KB) y `docs/stakeholder_slide.md` completos
+- [x] Slide de presentación → `docs/AI_Capstone_L1_L2 Julian Largo.pptx` y `docs/stakeholder_slide.md` completos
 - [x] Declarar esfuerzo → `docs/declared_effort.md` actualizado (~7h total, ejecución end-to-end incluida)
 
 ## Evidencia para el Checklist (`criteria_checklist.md`)
