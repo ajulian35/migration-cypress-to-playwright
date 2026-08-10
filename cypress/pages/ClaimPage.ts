@@ -1,16 +1,55 @@
 import { BasePage } from './BasePage';
 
 export class ClaimPage extends BasePage {
-  protected url: string = '/web/index.php/claim/viewEmployeeClaims';
+  protected url: string = '/web/index.php/claim/viewClaimModule';
 
   navigateToEmployeeClaims(): void {
-    cy.contains('.oxd-topbar-body-nav-tab', 'Claim').trigger('mouseover');
+    cy.visit(this.url);
     cy.contains('.oxd-topbar-body-nav-tab', 'Employee Claims').click();
+    cy.contains('button', 'Search').should('be.visible');
   }
 
-  selectEventName(name: string): void {
-    cy.contains('.oxd-input-group', 'Event Name').find('.oxd-select-text').click();
-    cy.get('.oxd-select-dropdown').should('be.visible').contains(name).click();
+  navigateToMyClaims(): void {
+    cy.visit(this.url);
+    cy.contains('button', 'Search').should('be.visible');
+  }
+
+  navigateToSubmitClaim(): void {
+    cy.visit('/web/index.php/claim/submitClaim');
+  }
+
+  selectEvent(eventName: string): void {
+    cy.contains('.oxd-input-group', 'Event').find('.oxd-select-wrapper').click();
+    cy.get('[role="listbox"] [role="option"]').contains(eventName).click();
+  }
+
+  selectCurrency(currencyName: string): void {
+    cy.contains('.oxd-input-group', 'Currency').find('.oxd-select-wrapper').click();
+    cy.get('[role="listbox"] [role="option"]').contains(currencyName).click();
+  }
+
+  clickCreate(): void {
+    cy.contains('button', 'Create').click();
+    cy.url().should('include', '/claim/submitClaim/id/');
+  }
+
+  addExpense(expenseType: string, date: string, amount: string): void {
+    cy.contains('button', 'Add').first().click();
+    cy.get('[role="dialog"]').within(() => {
+      cy.get('.oxd-select-wrapper').click();
+    });
+    cy.get('[role="listbox"] [role="option"]').contains(expenseType).click();
+    cy.get('[role="dialog"]').within(() => {
+      cy.get('input[placeholder="yyyy-dd-mm"]').type(date);
+      cy.get('input').last().clear().type(amount);
+      cy.contains('button', 'Save').click();
+    });
+    cy.contains('.oxd-toast', 'Successfully Saved').should('be.visible');
+  }
+
+  clickSubmitClaim(): void {
+    cy.contains('button', 'Submit').click();
+    cy.contains('input[disabled]', 'Submitted').should('exist');
   }
 
   clickSearch(): void {

@@ -8,19 +8,17 @@ describe('REQ-006: Search Employee', () => {
   beforeEach(() => {
     loginPage.visit();
     loginPage.login(
-      Cypress.env('TEST_USER_EMAIL'),
-      Cypress.env('TEST_USER_PASSWORD')
+      Cypress.env('NEW_USER_EMAIL'),
+      Cypress.env('NEW_USER_PASSWORD')
     );
     employeeListPage.visit();
   });
 
   it('returns results containing the searched employee name', () => {
-    employeeListPage.searchByName('mandaa');
-    cy.get('.oxd-autocomplete-dropdown').should('be.visible');
-    cy.get('.oxd-autocomplete-option').first().click();
+    employeeListPage.searchByName(Cypress.env('NEW_USER_FIRST'));
     employeeListPage.clickSearch();
 
     employeeListPage.getResultRows().should('have.length.greaterThan', 0);
-    employeeListPage.getResultRows().first().should('contain.text', 'mandaa');
+    employeeListPage.getResultRows().should('contain.text', Cypress.env('NEW_USER_FIRST'));
   });
 });

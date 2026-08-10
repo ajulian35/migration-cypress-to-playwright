@@ -5,7 +5,7 @@ scenarios("../../features/req_007_user_logout.feature")
 
 @when("I click on the user profile menu")
 def click_profile_menu(page: Page):
-    page.locator("span").filter(has_text="mandaa user").click()
+    page.locator(".oxd-userdropdown-tab").click()
 
 @when("I click the logout option")
 def click_logout(page: Page):
