@@ -10,14 +10,15 @@
 | Phase 2 — Playwright Python BDD generation (all 7 REQs) | ~1.0 h |
 | Import fix + dependency resolution | ~0.5 h |
 | Documentation (workflow, prompts, checklist gap analysis) | ~1.0 h |
-| **Total** | **~5.5 h** |
+| Full end-to-end execution + bug fixing (3 code bugs + 2 flaky-network failures resolved) | ~1.5 h |
+| **Total** | **~7.0 h** |
 
 ---
 
 ## What Was Cut or Descoped
 
-- **Cypress test execution in CI:** Tests were generated and validated for syntax but were not executed end-to-end in the Cypress runner. Running the full suite was descoped due to time constraints.
-- **Playwright Python test execution:** Same reason — scripts were generated and imports resolved, but no full pytest-bdd run was completed end-to-end.
+- **Cypress test execution in CI:** Completed in a follow-up session — full suite ran headless (8/8 passing) with mochawesome HTML reports generated under `reports/cypress/`.
+- **Playwright Python test execution:** Completed in the same follow-up session — full pytest-bdd run (8/8 passing) with HTML report generated under `reports/playwright/`.
 - **n8n automation pipeline:** Out of scope per project decision; not attempted.
 - **Git commit history:** The project was initialized without a git repository from the start, so there is no commit history separating the spec/plan phase from the implementation phase.
 - **REQ-001 assertion values:** The requirements document specifies values that no longer match the live OrangeHRM demo environment (data drift caused by other users modifying shared records). Assertions were updated to reflect the actual observed values rather than the originally specified ones.

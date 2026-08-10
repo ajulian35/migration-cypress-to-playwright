@@ -17,20 +17,19 @@
 | Playwright | `req-007_user-logout` | Timeout de navegación (30s) — mismo motivo de red | Flakiness de red |
 
 ## Código / Tests
-- [ ] Revisar y commitear cambios pendientes (todos los archivos están en estado `M`)
-- [ ] Validar que los archivos de precondición (`pre-001`, `pre-002`) se ejecutan antes de los tests dependientes - proyecto playwright
-- [ ] Validar que los archivos de precondición (`pre-001`, `pre-002`) se ejecutan antes de los tests dependientes - proyecto cypress
+- [x] Revisar y commitear cambios pendientes → tree limpio, 2 commits en `feature/migration-progress`
+- [x] Validar precondiciones Playwright → `pytest_collection_modifyitems` en `conftest.py` ordena: pre_001 → pre_002 → reqs
+- [x] Validar precondiciones Cypress → `specPattern` en `cypress.config.ts` fuerza el orden correcto del array
 
 ## Documentación del Capstone
-- [ ] Completar `migration_workflow.md` con el proceso Cypress → Playwright
-- [ ] Redactar problem statement (dominio, usuario, problema, definición de éxito)
-- [ ] Documentar data provenance (origen de datos, limitaciones, sensibilidad)
-- [ ] Registrar al menos un error que el AI generó y que fue corregido manualmente
-- [ ] Failure analysis: inputs específicos que rompen los tests y por qué
-- [ ] Mejora medida: estado antes, cambio aplicado, estado después
-- [ ] Preparar slide de presentación para stakeholders (PowerPoint ya existe en `docs/`)
-- [ ] Grabar demo o transcripción incluyendo al menos un caso que falla
-- [ ] Declarar esfuerzo: horas aproximadas y qué se descartó
+- [x] Completar `migration_workflow.md` con el proceso Cypress → Playwright → archivo completo con conversión patterns y decisiones
+- [x] Redactar problem statement → `docs/problem_statement.md` completo
+- [x] Documentar data provenance → `docs/data_provenance.md` completo
+- [x] Registrar errores que el AI generó y corregidos → `docs/ai_review.md` (3 errores documentados + actualizado con fix de REQ-006)
+- [x] Failure analysis → `docs/failure_analysis.md` completo (5 casos con inputs, outputs, root cause; REQ-006 marcado como resuelto)
+- [ ] Mejora medida: estado antes, cambio aplicado, estado después ← pendiente documentar
+- [ ] Preparar slide de presentación para stakeholders → `docs/stakeholder_slide.md` existe, verificar si el PowerPoint en `docs/` está completo
+- [x] Declarar esfuerzo → `docs/declared_effort.md` actualizado (~7h total, ejecución end-to-end incluida)
 
 ## Evidencia para el Checklist (`criteria_checklist.md`)
 - [ ] Spec, plan y task artifacts con commit history que demuestre que precedieron la implementación
