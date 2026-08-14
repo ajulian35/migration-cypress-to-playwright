@@ -3,9 +3,22 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
+const runtimeData: Record<string, string> = {};
+
 export default defineConfig({
   e2e: {
     baseUrl: process.env.BASE_URL || 'https://opensource-demo.orangehrmlive.com',
+    setupNodeEvents(on) {
+      on('task', {
+        setRuntimeValue({ key, value }: { key: string; value: string }) {
+          runtimeData[key] = value;
+          return null;
+        },
+        getRuntimeValue(key: string) {
+          return runtimeData[key] ?? null;
+        },
+      });
+    },
     env: {
       TEST_USER_EMAIL: process.env.TEST_USER_EMAIL,
       TEST_USER_PASSWORD: process.env.TEST_USER_PASSWORD,

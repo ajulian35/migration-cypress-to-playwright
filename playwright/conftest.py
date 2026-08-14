@@ -39,6 +39,11 @@ def page(browser_context):
     page.close()
 
 @pytest.fixture(scope="session")
+def runtime_data():
+    """Mutable store for values generated during the run (e.g. emp_number from pre_001)."""
+    return {}
+
+@pytest.fixture(scope="session")
 def base_url():
     return os.environ.get("BASE_URL", "https://opensource-demo.orangehrmlive.com")
 

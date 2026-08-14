@@ -15,6 +15,10 @@ export class AddEmployeePage extends BasePage {
     cy.get('input[name="lastName"]').clear().type(name);
   }
 
+  fillEmployeeId(id: string): void {
+    cy.contains('.oxd-input-group', 'Employee Id').find('input').clear().type(id);
+  }
+
   enableLoginDetails(): void {
     cy.get('.oxd-switch-input').click();
     cy.get('.oxd-input-group:contains("Username") input').should('be.visible');
@@ -31,12 +35,12 @@ export class AddEmployeePage extends BasePage {
 
   clickSave(): void {
     cy.contains('button', 'Save').click();
-    // Accept redirect on success OR staying on addEmployee when username already exists
-    cy.url().should((url) => {
-      expect(
-        url.includes('/pim/viewPersonalDetails/empNumber/') ||
-        url.includes('/pim/addEmployee')
-      ).to.be.true;
+    cy.url().should('include', '/pim/viewPersonalDetails/empNumber/');
+    cy.url().then((url) => {
+      const match = url.match(/empNumber\/(\d+)/);
+      if (match) {
+        cy.task('setRuntimeValue', { key: 'empNumber', value: match[1] });
+      }
     });
   }
 }
