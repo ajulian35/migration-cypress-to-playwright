@@ -50,8 +50,8 @@
 - [x] Reportar los **casos donde el agente falla**, con al menos **2 explicados mecánicamente** (input específico → output incorrecto → causa raíz). _(3 casos documentados: Employee ID collision, Vue timing race, import path shadowing)_
 
 ### P9. Stack tecnológico
-- [ ] Documentar el stack elegido y justificar contra **al menos una alternativa rechazada** (ej. LangGraph vs n8n vs Claude Code Agent SDK).
-- [ ] Si se usa Portkey o LangSmith, documentar la configuración. Si no se usan, justificar el equivalente de observabilidad.
+- [x] Documentar el stack elegido y justificar contra **al menos una alternativa rechazada** (ej. LangGraph vs n8n vs Claude Code Agent SDK). _(`docs/stack_observability.md`: Claude Code vs LangGraph/n8n/AutoGPT; MCP Playwright vs Selenium; pytest-bdd vs Behave/Robot Framework)_
+- [x] Si se usa Portkey o LangSmith, documentar la configuración. Si no se usan, justificar el equivalente de observabilidad. _(transcript JSONL como trace equivalente; extracto real de session `9bd4ca8f` incluido con tool call + result del fallo Vue)_
 
 ---
 
@@ -134,7 +134,7 @@ Todas las tareas agrupadas por categoría, ordenadas por prioridad.
 17. Crear suite **`pytest-asyncio`** cubriendo agent loop, tool mocking y recovery path, con output pasando.
 
 ### F. OBSERVABILIDAD
-18. Integrar y capturar trazas de observabilidad (Portkey, LangSmith, o equivalente de Claude Code) como evidencia del comportamiento del agente.
+18. ~~Integrar y capturar trazas de observabilidad (Portkey, LangSmith, o equivalente de Claude Code) como evidencia del comportamiento del agente).~~ ✅ Transcript JSONL documentado en `docs/stack_observability.md` con extracto real.
 
 ### G. DOCUMENTACIÓN NUEVA
 19. Crear `REFLECTION.md` (600–1000 palabras): qué se construyó, por qué, qué falló, cómo se corrigió, qué se haría diferente, impacto de negocio.
