@@ -58,29 +58,29 @@
 ## FUENTE 3 — criteria_checklist.md (Criterios de evaluación — todos unchecked)
 
 ### P10. DEFINE — Obligatorios
-- [ ] Problem statement: dominio, usuario, decisión que el agente delega.
-- [ ] Justificación de que el agente es necesario (vs script determinista).
-- [ ] Data provenance note: fuente, qué representa, si incluye casos difíciles que exponen fallos del agente, cómo se maneja información sensible.
+- [x] Problem statement: dominio, usuario, decisión que el agente delega. _(`docs/problem_statement.md`)_
+- [x] Justificación de que el agente es necesario (vs script determinista). _(`docs/problem_statement.md` — "Why an Agent, Not a Deterministic Script")_
+- [x] Data provenance note: fuente, qué representa, si incluye casos difíciles que exponen fallos del agente, cómo se maneja información sensible. _(`docs/problem_statement.md` — "Data Provenance")_
 
 ### P11. BUILD — Obligatorios
-- [ ] Agente funcionando end-to-end, demostrable.
-- [ ] Mínimo 2 tools invocadas por el agente.
-- [ ] Componente de memoria con razón declarada del tier elegido.
-- [ ] Human validation gate antes de cualquier acción irreversible.
-- [ ] Failure handling: output validado, razón de fallo incluida en retry, escalación con contexto completo después de fallo repetido.
+- [x] Agente funcionando end-to-end, demostrable. _(Cypress 8/8 + Playwright 8/8, reportes en `reports/`)_
+- [x] Mínimo 2 tools invocadas por el agente. _(`docs/agent_architecture.md` — 3 tools: MCP Playwright, file-system, Bash/pytest)_
+- [x] Componente de memoria con razón declarada del tier elegido. _(`docs/agent_architecture.md` — short-term in-context + CLAUDE.md session-persistent)_
+- [x] Human validation gate antes de cualquier acción irreversible. _(Step 2.5 en `.claude/agents/playwright-migration.md`)_
+- [x] Failure handling: output validado, razón de fallo incluida en retry, escalación con contexto completo después de fallo repetido. _(`docs/agent_evaluation.md` — "P7 Failure Handling Protocol")_
 
 ### P12. PROVE — Obligatorios
-- [ ] Evaluación contra criterios definidos y defendibles (no por inspección).
-- [ ] Casos donde falla, con mínimo 2 explicados mecánicamente.
-- [ ] Inyección deliberada de fallo + demostración de recovery o escalación.
-- [ ] **Suite `pytest-asyncio`** cubriendo: agent loop, tool mocking, recovery path — con output de ejecución pasando incluido.
-- [ ] **Evidencia de observabilidad**: Portkey traces, LangSmith step traces, o equivalente.
+- [x] Evaluación contra criterios definidos y defendibles (no por inspección). _(criterios C1–C5 en `docs/agent_evaluation.md`)_
+- [x] Casos donde falla, con mínimo 2 explicados mecánicamente. _(3 casos en `docs/agent_evaluation.md`)_
+- [x] Inyección deliberada de fallo + demostración de recovery o escalación. _(Vue timing race en `docs/agent_evaluation.md` + commit `fe083bc`)_
+- [x] **Suite `pytest-asyncio`** cubriendo: agent loop, tool mocking, recovery path — con output de ejecución pasando incluido. _(`tests/agent/test_agent_loop.py` — 8/8 passed en 0.06s)_
+- [x] **Evidencia de observabilidad**: Portkey traces, LangSmith step traces, o equivalente. _(`docs/stack_observability.md` — transcript JSONL con 238 tool calls + extracto real)_
 
 ### P13. COMMUNICATE — Obligatorios
-- [ ] `REFLECTION.md` 600–1000 palabras: qué se construyó, por qué, qué falló, cómo se corrigió, qué se haría diferente, impacto de negocio. Las secciones de fallo tienen mayor peso.
-- [ ] **Un slide** presentando la solución a stakeholders del cliente.
-- [ ] **Demo** mostrando: (a) run normal y (b) fallo siendo manejado/escalado.
-- [ ] Declared-effort statement: horas aproximadas y qué se decidió cortar.
+- [x] `REFLECTION.md` 600–1000 palabras: qué se construyó, por qué, qué falló, cómo se corrigió, qué se haría diferente, impacto de negocio. Las secciones de fallo tienen mayor peso. _(`REFLECTION.md` — ~800 palabras, 3 fallos detallados)_
+- [ ] **Un slide** presentando la solución a stakeholders del cliente. _(pendiente: parte de la presentación PPT)_
+- [ ] **Demo** mostrando: (a) run normal y (b) fallo siendo manejado/escalado. _(descoped: documentado en `declared_effort.md` como limitación conocida)_
+- [x] Declared-effort statement: horas aproximadas y qué se decidió cortar. _(`docs/declared_effort.md` actualizado con L2: ~6h adicionales, demo recording descoped)_
 
 ---
 
