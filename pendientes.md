@@ -17,12 +17,12 @@
 - [x] La ejecución L1 que reclamó "8/8 passing" fue **inconclusa** para el evaluador (3/4 tests se quedaron en login page en su run independiente). Para L2 se debe incluir en el repositorio el **output real de consola / reporte HTML** de una ejecución exitosa documentada.
 
 ### P3. Documento de requerimientos desactualizado
-- [ ] Actualizar `requirements/functional_requirements_Cypress.md` líneas 26–28 para que los valores (Nationality, Marital Status, Date of Birth) reflejen los valores actuales del demo live, en lugar de los valores stale del spec original.
+- [x] Actualizar `requirements/functional_requirements_Cypress.md` líneas 26–28 para que los valores (Nationality, Marital Status, Date of Birth) reflejen los valores actuales del demo live, en lugar de los valores stale del spec original.
 
 ### P4. Bugs conocidos no corregidos en L1 (del ai_review.md)
-- [ ] **REQ-007** — username `"mandaa user"` hardcodeado en `playwright/tests/step_defs/req_007_steps.py:8`. Cambiar a `.oxd-userdropdown-tab` o leer desde fixture/env.
-- [ ] **REQ-002** — re-localización redundante de la misma fila usando referencia hardcodeada `"202307180000002"` en 6 `@then` steps. Refactorizar para usar `ref_id` del parámetro o fixture compartido.
-- [ ] **REQ-005** — no hay teardown del empleado creado. Cada ejecución acumula registros en el demo. Agregar fixture con cleanup post-escenario.
+- [x] **REQ-007** — username `"mandaa user"` hardcodeado en `playwright/tests/step_defs/req_007_steps.py:8`. Cambiar a `.oxd-userdropdown-tab` o leer desde fixture/env. _(ya resuelto en código — usa `.oxd-userdropdown-tab`)_
+- [x] **REQ-002** — re-localización redundante de la misma fila usando referencia hardcodeada `"202307180000002"` en 6 `@then` steps. Refactorizar para usar `ref_id` del parámetro o fixture compartido. _(ya resuelto — código usa matching dinámico sin hardcode)_
+- [x] **REQ-005** — no hay teardown del empleado creado. Cada ejecución acumula registros en el demo. Agregar fixture con cleanup post-escenario. _(resuelto: `cleanup_test_employee` session autouse en `conftest.py`)_
 
 ---
 
@@ -108,12 +108,12 @@ Todas las tareas agrupadas por categoría, ordenadas por prioridad.
 
 ### A. GIT / SPEC-DRIVEN (crítico para puntuación)
 1. ~~El historial de commits en `L2` debe seguir la secuencia: spec → plan → tasks → implement. Asegurarse de hacer commits granulares desde ahora.~~ ✅ Commits `c168a01` (spec), `ed438f4` (plan), `6a379e1` (fix), `449adf0` (docs) verificables en L2.
-2. Actualizar `requirements/functional_requirements_Cypress.md` con valores live de REQ-001 (Nationality, Marital Status, Date of Birth).
+2. ~~Actualizar `requirements/functional_requirements_Cypress.md` con valores live de REQ-001 (Nationality, Marital Status, Date of Birth).~~ ✅ Actualizado a test user qauser_001 (Julian/Test/QAUser); campos opcionales no verificados documentados.
 
 ### B. CÓDIGO — BUGS PENDIENTES
-3. Corregir `req_007_steps.py:8` — reemplazar `"mandaa user"` hardcodeado por `.oxd-userdropdown-tab` o fixture de env.
-4. Refactorizar `req_002_steps.py` — eliminar re-localización redundante con referencia hardcodeada, usar `ref_id` del parámetro.
-5. Agregar teardown en `req_005_steps.py` para eliminar el empleado creado (cleanup post-escenario).
+3. ~~Corregir `req_007_steps.py:8` — reemplazar `"mandaa user"` hardcodeado por `.oxd-userdropdown-tab` o fixture de env.~~ ✅ Ya resuelto.
+4. ~~Refactorizar `req_002_steps.py` — eliminar re-localización redundante con referencia hardcodeada, usar `ref_id` del parámetro.~~ ✅ Ya resuelto.
+5. ~~Agregar teardown en `req_005_steps.py` para eliminar el empleado creado (cleanup post-escenario).~~ ✅ `cleanup_test_employee` en `conftest.py`.
 
 ### C. TESTS — EJECUCIÓN Y EVIDENCIA
 6. ~~Ejecutar los 8 tests de Cypress (suite completa) y capturar el output/reporte HTML como evidencia oficial para L2.~~ ✅ 8/8 passing, reportes mochawesome en `reports/cypress/`.
