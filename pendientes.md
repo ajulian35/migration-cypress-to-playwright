@@ -14,8 +14,7 @@
 - [x] El commit inicial de L2 debe contener únicamente el spec/problem-statement. No código aún.
 
 ### P2. Evidencia de ejecución del suite
-- [ ] La ejecución L1 que reclamó "8/8 passing" fue **inconclusa** para el evaluador (3/4 tests se quedaron en login page en su run independiente). Para L2 se debe incluir en el repositorio el **output real de consola / reporte HTML** de una ejecución exitosa documentada.
-- [ ] Idealmente contra un entorno OrangeHRM **local o containerizado** (no el demo compartido) para que sea reproducible.
+- [x] La ejecución L1 que reclamó "8/8 passing" fue **inconclusa** para el evaluador (3/4 tests se quedaron en login page en su run independiente). Para L2 se debe incluir en el repositorio el **output real de consola / reporte HTML** de una ejecución exitosa documentada.
 
 ### P3. Documento de requerimientos desactualizado
 - [ ] Actualizar `requirements/functional_requirements_Cypress.md` líneas 26–28 para que los valores (Nationality, Marital Status, Date of Birth) reflejen los valores actuales del demo live, en lugar de los valores stale del spec original.
@@ -118,7 +117,7 @@ Todas las tareas agrupadas por categoría, ordenadas por prioridad.
 
 ### C. TESTS — EJECUCIÓN Y EVIDENCIA
 6. ~~Ejecutar los 8 tests de Cypress (suite completa) y capturar el output/reporte HTML como evidencia oficial para L2.~~ ✅ 8/8 passing, reportes mochawesome en `reports/cypress/`.
-7. Ejecutar los 8 tests de Playwright (suite completa) y capturar el output/reporte HTML como evidencia oficial para L2. _(fix pre-001 committed; pendiente re-run limpio para confirmar 8/8)_
+7. ~~Ejecutar los 8 tests de Playwright (suite completa) y capturar el output/reporte HTML como evidencia oficial para L2.~~ ✅ 8/8 passing, reporte en `reports/playwright/report.html`.
 8. Idealmente repetir contra entorno estable (si no se puede containerizar, documentar la inestabilidad del demo compartido como limitación conocida con detalle técnico).
 
 ### D. AGENTE — ARQUITECTURA Y DOCUMENTACIÓN
