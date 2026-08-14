@@ -10,8 +10,8 @@
 > Solo se listan los ítems que el evaluador identificó como **gap, incompleto, o requieren acción en L2**.
 
 ### P1. Spec-Driven Development — Brecha crítica (3/15)
-- [ ] La secuencia **spec → plan → tasks → implement** debe ser verificable desde el historial de git. El proyecto L1 no tenía repositorio al inicio. Para L2: crear commits en ese orden desde el primer día en la rama `L2`.
-- [ ] El commit inicial de L2 debe contener únicamente el spec/problem-statement. No código aún.
+- [x] La secuencia **spec → plan → tasks → implement** debe ser verificable desde el historial de git. El proyecto L1 no tenía repositorio al inicio. Para L2: crear commits en ese orden desde el primer día en la rama `L2`.
+- [x] El commit inicial de L2 debe contener únicamente el spec/problem-statement. No código aún.
 
 ### P2. Evidencia de ejecución del suite
 - [ ] La ejecución L1 que reclamó "8/8 passing" fue **inconclusa** para el evaluador (3/4 tests se quedaron en login page en su run independiente). Para L2 se debe incluir en el repositorio el **output real de consola / reporte HTML** de una ejecución exitosa documentada.
@@ -108,7 +108,7 @@
 Todas las tareas agrupadas por categoría, ordenadas por prioridad.
 
 ### A. GIT / SPEC-DRIVEN (crítico para puntuación)
-1. El historial de commits en `L2` debe seguir la secuencia: spec → plan → tasks → implement. Asegurarse de hacer commits granulares desde ahora.
+1. ~~El historial de commits en `L2` debe seguir la secuencia: spec → plan → tasks → implement. Asegurarse de hacer commits granulares desde ahora.~~ ✅ Commits `c168a01` (spec), `ed438f4` (plan), `6a379e1` (fix), `449adf0` (docs) verificables en L2.
 2. Actualizar `requirements/functional_requirements_Cypress.md` con valores live de REQ-001 (Nationality, Marital Status, Date of Birth).
 
 ### B. CÓDIGO — BUGS PENDIENTES
@@ -117,8 +117,8 @@ Todas las tareas agrupadas por categoría, ordenadas por prioridad.
 5. Agregar teardown en `req_005_steps.py` para eliminar el empleado creado (cleanup post-escenario).
 
 ### C. TESTS — EJECUCIÓN Y EVIDENCIA
-6. Ejecutar los 8 tests de Cypress (suite completa) y capturar el output/reporte HTML como evidencia oficial para L2.
-7. Ejecutar los 8 tests de Playwright (suite completa) y capturar el output/reporte HTML como evidencia oficial para L2.
+6. ~~Ejecutar los 8 tests de Cypress (suite completa) y capturar el output/reporte HTML como evidencia oficial para L2.~~ ✅ 8/8 passing, reportes mochawesome en `reports/cypress/`.
+7. Ejecutar los 8 tests de Playwright (suite completa) y capturar el output/reporte HTML como evidencia oficial para L2. _(fix pre-001 committed; pendiente re-run limpio para confirmar 8/8)_
 8. Idealmente repetir contra entorno estable (si no se puede containerizar, documentar la inestabilidad del demo compartido como limitación conocida con detalle técnico).
 
 ### D. AGENTE — ARQUITECTURA Y DOCUMENTACIÓN
