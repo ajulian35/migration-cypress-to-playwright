@@ -37,3 +37,46 @@ For a client stakeholder, the value is threefold:
 - **Reusable workflow.** The agent prompts, project structure, and conventions documented here are portable. The next migration starts from a known, working baseline rather than a blank page.
 
 Any team member who can follow the documented prompts and project structure can execute this workflow — it does not depend on a single expert's institutional knowledge.
+
+---
+
+## The Agent Decision (L2 — Agent Architecture)
+
+The core agentic decision is: **given a Cypress TypeScript spec and access to a live browser, determine the correct Playwright Python implementation without human-directed step-by-step instruction.**
+
+On each requirement, the agent must decide at runtime:
+
+1. **Which selectors to use** — it cannot copy Cypress selectors verbatim because Playwright's query semantics differ. It must inspect the live DOM, identify the element, and choose a selector strategy (`getByRole`, CSS, or `has-text` pseudo-class) that will be stable under re-renders.
+2. **How to translate the assertion** — Cypress `should('have.text', …)` becomes a Playwright `expect(locator).to_have_text(…)`, but the equivalence depends on whether the element contains nested markup, whitespace normalization, or dynamic content. The agent must observe the actual element before deciding.
+3. **How to structure the BDD layer** — the Gherkin scenario title, step granularity, and fixture sharing strategy are not derivable from the Cypress test alone; they require understanding the test's intent and the page flow.
+
+None of these decisions can be resolved with a fixed lookup table. Each requires live browser evidence at the time of migration.
+
+## Why an Agent, Not a Deterministic Script
+
+A deterministic script could transpile Cypress command syntax to Playwright syntax mechanically (and tools like `cypress-to-playwright-codemod` attempt this). The gap is **selector validity**: a script cannot know whether a copied selector resolves correctly on the live application at migration time. Selectors rot as the application changes, and the shared demo environment used in this project changes continuously across sessions.
+
+An agent — specifically one with MCP Playwright browser tools — can:
+- Navigate the live page, snapshot the DOM, and verify that a proposed selector resolves to exactly one element before writing the code.
+- Detect when a selector resolves to zero or multiple elements and choose a different strategy, rather than writing broken code silently.
+- Flag when an application state prerequisite (e.g., a test user that must be created first) is not satisfied, and pause for human confirmation before proceeding.
+
+A script has no mechanism to handle these cases. It would silently produce broken tests. The agent produces tests that pass on first execution because it verified the selectors before committing them.
+
+## Data Provenance
+
+**Source:** OrangeHRM open-source demo (`opensource-demo.orangehrmlive.com`) — a publicly hosted instance of OrangeHRM, shared among all visitors. Credentials are public and included in the repository `.env` file.
+
+**What it represents:** A realistic HR application with employee management, leave, and claims modules. It provides authentic DOM structure, navigation flows, and form interactions representative of enterprise HR software.
+
+**Limitations and awkward cases:**
+- The demo resets daily, clearing data created by previous sessions. Any test that depends on pre-existing data (e.g., a specific employee or claim record) is fragile across resets.
+- The demo is shared: other users can create, modify, or delete records concurrently. Employee ID conflicts and username collisions occur in practice and were observed during this project.
+- Date-sensitive fields (e.g., claim submission dates) display differently depending on the demo's current data state.
+
+These limitations were handled by:
+- Pre-condition tests (`pre-001`, `pre-002`) that create required data at the start of each run.
+- Explicit Employee ID injection (`NEW_EMP_ID` from `.env`) to avoid auto-generated ID collisions.
+- Graceful handling in `click_save()` when a conflicting employee already exists (from a prior run in the same session).
+
+**Sensitive data:** None. All credentials in `.env` are the demo's publicly documented test credentials. No real user data is involved.
