@@ -34,8 +34,20 @@ artifacts for the Playwright BDD framework under `playwright/`.
 5. Confirm the result matches the **Expected Result** in
    `requirements/functional_requirements_Cypress.md`.
 
+### Step 2.5 — Human validation gate (REQUIRED before any file write)
+
+Present a summary to the user covering:
+- Which selectors were confirmed against the live DOM (list each one).
+- Which selectors were adjusted and why (original → replacement, reason).
+- Whether all assertions matched the expected values from the requirements doc.
+- Any prerequisite state that was missing or uncertain.
+
+**Do not proceed to Step 3 until the user explicitly confirms the summary.**
+
+If the user does not confirm, stop and report what is blocking progress. Do not write any file.
+
 ### Step 3 — Generate Playwright Python artifacts
-Only if Step 2 succeeded:
+Only if Steps 2 and 2.5 succeeded:
 
 1. **Feature file** → `playwright/features/<req_xxx_name>.feature`
    - One `Scenario` per test case / assertion group.
