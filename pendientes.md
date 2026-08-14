@@ -78,7 +78,7 @@
 
 ### P13. COMMUNICATE — Obligatorios
 - [x] `REFLECTION.md` 600–1000 palabras: qué se construyó, por qué, qué falló, cómo se corrigió, qué se haría diferente, impacto de negocio. Las secciones de fallo tienen mayor peso. _(`REFLECTION.md` — ~800 palabras, 3 fallos detallados)_
-- [ ] **Un slide** presentando la solución a stakeholders del cliente. _(pendiente: parte de la presentación PPT)_
+- [x] **Un slide** presentando la solución a stakeholders del cliente. _(Slide 3 + Slides 4-8 en presentación PPT completada)_
 - [ ] **Demo** mostrando: (a) run normal y (b) fallo siendo manejado/escalado. _(descoped: documentado en `declared_effort.md` como limitación conocida)_
 - [x] Declared-effort statement: horas aproximadas y qué se decidió cortar. _(`docs/declared_effort.md` actualizado con L2: ~6h adicionales, demo recording descoped)_
 
@@ -89,16 +89,16 @@
 > La presentación es un **template en blanco** — ningún slide de contenido está completado. Todo lo siguiente está pendiente.
 
 ### P14. Completar slides de contenido
-- [ ] **Slide 1**: Agregar nombre (Julian Largo Ramirez) y fecha. Seleccionar Option 4 (AI Case Study).
-- [ ] **Slide 3 — Project Overview**: Completar con dominio del proyecto, problema, solución AI, y outcomes cuantificados.
-- [ ] **Slide 4 — AI Approach**: Documentar el flujo paso a paso del agente (ej. requirements → MCP exploration → code generation → validation → report).
-- [ ] **Slide 5 — Before/After**: Proceso manual vs proceso asistido por AI. Incluir screenshot de output del agente. Tiempos comparados.
-- [ ] **Slide 6 — AI Impact Scorecard**: Llenar métricas reales (tiempo antes/después, calidad, frecuencia, beneficio de equipo). Incluir números específicos.
-- [ ] **Slide 7 — Reusability & Scale**: Qué es reutilizable (el agente, los prompts, el CLAUDE.md), quién puede adoptarlo, qué se empaquetó.
-- [ ] **Slide 8 — What AI Got Right & Wrong**: Ejemplos reales del proyecto (ej. selector generation, import shadowing bug, demo data drift). Ser específico.
-- [ ] **Slide 9 — Evidence & Artifacts**: Links a commits, demo recording, prompt log/transcript, screenshots. Completar datos del Validator.
-- [ ] **Slide 11 — Self-Rating**: Completar scores por cada uno de los 5 competency topics.
-- [ ] **Slide 12 — Reflection & Key Takeaway**: Completar frases de reflexión y nivel de confianza before/after.
+- [x] **Slide 1**: Nombre (Julian Largo Ramirez), fecha (2026-08-14), Option 4 — AI Case Study.
+- [x] **Slide 3 — Project Overview**: Dominio (QA Engineering), problema/solución AI, outcomes cuantificados (8/8 passing, 75% time reduction).
+- [x] **Slide 4 — AI Approach**: 5 pasos documentados (Requirements Analysis → MCP Exploration → Code Generation → Execution & Validation → Evidence & Commit).
+- [x] **Slide 5 — Before/After**: Manual (16-24h, 3 bug patterns) vs AI-assisted (3.5h, 80% first-pass accuracy). Execution evidence referenced.
+- [x] **Slide 6 — AI Impact Scorecard**: Tabla con 5 métricas reales; ~80% time saved; +100% defect detection; ~12-20h saved per future migration.
+- [x] **Slide 7 — Reusability & Scale**: Agent definition, CLAUDE.md, prompts/, full repo structure — adoptable by any QA team with Claude Code + MCP.
+- [x] **Slide 8 — What AI Got Right & Wrong**: OR-condition masking, Vue timing race, selector generation documented with root causes.
+- [x] **Slide 9 — Evidence & Artifacts**: Commit SHAs, session transcript JSONL path, prompt files, report paths. Validator fields left for evaluator.
+- [x] **Slide 11 — Self-Rating**: 22+26+24+24+18 = 114/150 (5 of 5 topics demonstrated).
+- [x] **Slide 12 — Reflection & Key Takeaway**: Before/after confidence (4→8/10), biggest learning, tip for next cohort.
 
 ---
 
