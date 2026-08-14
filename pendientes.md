@@ -40,14 +40,14 @@
 - [x] **Human validation gate** explícito antes de cualquier acción irreversible (ej. antes de sobrescribir tests, antes de hacer commit). Demostrar que existe en el flujo. _(Step 2.5 agregado en `.claude/agents/playwright-migration.md`; documentado en `docs/agent_architecture.md`)_
 
 ### P7. Manejo de fallos (obligatorio)
-- [ ] El agente debe **validar el output de las herramientas** en lugar de asumirlo correcto.
-- [ ] Cuando falla, debe **incluir la razón específica del fallo en el retry** (no reintentar a ciegas).
-- [ ] Después de N fallos repetidos, **escalar con contexto completo** en lugar de entrar en loop.
-- [ ] **Inyectar un fallo deliberado** (ej. tool output malformado, timeout, input inesperado) y demostrar que el agente lo maneja o escala correctamente.
+- [x] El agente debe **validar el output de las herramientas** en lugar de asumirlo correcto. _(`docs/agent_evaluation.md` — "Tool output validation": snapshot count, pytest output, URL redirect check)_
+- [x] Cuando falla, debe **incluir la razón específica del fallo en el retry** (no reintentar a ciegas). _(protocolo de retry con input original + error exacto + DOM excerpt)_
+- [x] Después de N fallos repetidos, **escalar con contexto completo** en lugar de entrar en loop. _(escalación documentada: después de 2 fallos consecutivos, stop + full context + human guidance)_
+- [x] **Inyectar un fallo deliberado** (ej. tool output malformado, timeout, input inesperado) y demostrar que el agente lo maneja o escala correctamente. _(Vue timing race: `all_text_contents()` → `[]` cuando errores existen; recovery via `wait_for_function()`, evidencia en commit `fe083bc`)_
 
 ### P8. Evaluación objetiva del agente
-- [ ] Definir criterios de evaluación propios (no por inspección). Ej. "el test generado corre sin modificación manual", "el selector corresponde al elemento correcto", etc.
-- [ ] Reportar los **casos donde el agente falla**, con al menos **2 explicados mecánicamente** (input específico → output incorrecto → causa raíz).
+- [x] Definir criterios de evaluación propios (no por inspección). Ej. "el test generado corre sin modificación manual", "el selector corresponde al elemento correcto", etc. _(5 criterios C1–C5 con método de medición y resultados en `docs/agent_evaluation.md`)_
+- [x] Reportar los **casos donde el agente falla**, con al menos **2 explicados mecánicamente** (input específico → output incorrecto → causa raíz). _(3 casos documentados: Employee ID collision, Vue timing race, import path shadowing)_
 
 ### P9. Stack tecnológico
 - [ ] Documentar el stack elegido y justificar contra **al menos una alternativa rechazada** (ej. LangGraph vs n8n vs Claude Code Agent SDK).
@@ -125,12 +125,12 @@ Todas las tareas agrupadas por categoría, ordenadas por prioridad.
 10. ~~Definir y escribir el **problem statement** del agente: dominio, usuario, decisión delegada, justificación vs script.~~ ✅ `docs/problem_statement.md`
 11. ~~Escribir la **data provenance note** para L2 (OrangeHRM demo: qué representa, limitaciones, casos difíciles incluidos).~~ ✅ `docs/problem_statement.md` sección "Data Provenance"
 12. ~~Implementar o documentar el **human validation gate** explícito en el flujo del agente.~~ ✅ Step 2.5 en `.claude/agents/playwright-migration.md`
-13. Documentar/implementar **failure handling**: validación de tool output, retry con razón de fallo, escalación.
-14. **Inyectar fallo deliberado** y capturar la respuesta del agente como evidencia.
+13. ~~Documentar/implementar **failure handling**: validación de tool output, retry con razón de fallo, escalación.~~ ✅ `docs/agent_evaluation.md`
+14. ~~**Inyectar fallo deliberado** y capturar la respuesta del agente como evidencia.~~ ✅ Vue timing race documentada con recovery sequence y commit SHA.
 
 ### E. EVALUACIÓN DEL AGENTE
-15. Definir criterios de evaluación del agente (no por inspección).
-16. Documentar al menos 2 casos donde el agente falla, con explicación mecánica (input → output incorrecto → causa raíz).
+15. ~~Definir criterios de evaluación del agente (no por inspección).~~ ✅ Criterios C1–C5 en `docs/agent_evaluation.md`
+16. ~~Documentar al menos 2 casos donde el agente falla, con explicación mecánica (input → output incorrecto → causa raíz).~~ ✅ 3 casos en `docs/agent_evaluation.md`
 17. Crear suite **`pytest-asyncio`** cubriendo agent loop, tool mocking y recovery path, con output pasando.
 
 ### F. OBSERVABILIDAD
