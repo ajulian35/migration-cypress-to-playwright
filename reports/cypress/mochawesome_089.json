@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-08-14T17:02:47.293Z",
+    "end": "2026-08-14T17:02:56.150Z",
+    "duration": 8857,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "fbfccafc-cb24-456e-af8d-d83a1a01f154",
+      "title": "",
+      "fullFile": "cypress\\e2e\\req-004_invalid-login.cy.ts",
+      "file": "cypress\\e2e\\req-004_invalid-login.cy.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d1e047e1-cacb-49b6-8fbf-122c59f6c650",
+          "title": "REQ-004: Invalid Login",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "shows an error message for invalid credentials and stays on login page",
+              "fullTitle": "REQ-004: Invalid Login shows an error message for invalid credentials and stays on login page",
+              "timedOut": null,
+              "duration": 8818,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginPage.login('wronguser', 'wrongpass');\ncy.get('[role=\"alert\"]').should('be.visible').and('contain.text', 'Invalid credentials');\ncy.url().should('include', '/auth/login');",
+              "err": {},
+              "uuid": "09bb8f9c-ea8b-4223-8c45-72101ef7379e",
+              "parentUUID": "d1e047e1-cacb-49b6-8fbf-122c59f6c650",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "09bb8f9c-ea8b-4223-8c45-72101ef7379e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 8818,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.0.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "reports/cypress",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+# Ignore historical per-spec mochawesome runs except the official L2 evidence run (086–093)
+mochawesome_0[0-7]*.html
+mochawesome_0[0-7]*.json
+mochawesome_08[0-5].html
+mochawesome_08[0-5].json
+mochawesome.html
+mochawesome.json
+req-003_login_success.png
+screenshots/
+assets/

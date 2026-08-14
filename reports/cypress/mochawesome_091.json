@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-08-14T17:03:07.594Z",
+    "end": "2026-08-14T17:03:15.011Z",
+    "duration": 7417,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "21d97067-6d21-4da5-9902-1227097ee6dc",
+      "title": "",
+      "fullFile": "cypress\\e2e\\req-002_claim-validation.cy.ts",
+      "file": "cypress\\e2e\\req-002_claim-validation.cy.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "99c687d5-309e-48d7-a335-270b7e43a764",
+          "title": "REQ-002: Claim Validation",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "finds a submitted Medical Reimbursement claim in My Claims",
+              "fullTitle": "REQ-002: Claim Validation finds a submitted Medical Reimbursement claim in My Claims",
+              "timedOut": null,
+              "duration": 7355,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "claimPage.navigateToMyClaims();\nclaimPage.clickSearch();\nclaimPage.getResultRows().filter(':contains(\"Medical Reimbursement\")').filter(':contains(\"Submitted\")').should('have.length.greaterThan', 0).first().within(() => {\n  cy.contains('Medical Reimbursement').should('be.visible');\n  cy.contains('Canadian Dollar').should('be.visible');\n  cy.contains('Submitted').should('be.visible');\n  cy.contains('1,250.12').should('be.visible');\n});",
+              "err": {},
+              "uuid": "376c6e3c-e48d-4458-8e71-c4da6373d033",
+              "parentUUID": "99c687d5-309e-48d7-a335-270b7e43a764",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "376c6e3c-e48d-4458-8e71-c4da6373d033"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7355,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.0.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "reports/cypress",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

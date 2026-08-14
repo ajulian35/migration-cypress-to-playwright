@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-08-14T17:02:36.806Z",
+    "end": "2026-08-14T17:02:45.941Z",
+    "duration": 9135,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "8693235c-f460-4641-824a-1d0b1498affc",
+      "title": "",
+      "fullFile": "cypress\\e2e\\req-003_user-login.cy.ts",
+      "file": "cypress\\e2e\\req-003_user-login.cy.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "58fc5125-e958-40c8-92c0-0cac1a989f54",
+          "title": "REQ-003: User Login (Valid Credentials)",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should redirect to Dashboard after login with valid credentials",
+              "fullTitle": "REQ-003: User Login (Valid Credentials) should redirect to Dashboard after login with valid credentials",
+              "timedOut": null,
+              "duration": 9087,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginPage.login(Cypress.env('NEW_USER_EMAIL'), Cypress.env('NEW_USER_PASSWORD'));\ncy.url().should('include', '/dashboard/index');\ndashboardPage.isLoaded();",
+              "err": {},
+              "uuid": "9b3f42e1-8de2-4598-a7af-efb3c46b276a",
+              "parentUUID": "58fc5125-e958-40c8-92c0-0cac1a989f54",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "9b3f42e1-8de2-4598-a7af-efb3c46b276a"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9087,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.0.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "reports/cypress",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

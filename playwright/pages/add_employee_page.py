@@ -51,7 +51,16 @@ class AddEmployeePage(BasePage):
 
     def click_save(self):
         self.page.locator(self.SAVE_BUTTON).click()
-        self.page.wait_for_load_state("networkidle")
+
+        # Wait for either the success redirect or a validation error to appear.
+        # networkidle alone resolves before Vue renders inline error messages.
+        self.page.wait_for_function(
+            """() =>
+                window.location.href.includes('pim/viewPersonalDetails/empNumber/') ||
+                document.querySelector('.oxd-input-field-error-message') !== null
+            """,
+            timeout=12000,
+        )
 
         if "pim/viewPersonalDetails/empNumber/" in self.page.url:
             return  # employee created successfully
