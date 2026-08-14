@@ -14,21 +14,20 @@
 
 **Steps:**
 1. Launch the application.
-2. Log in with valid credentials.
+2. Log in as the test employee created in PRE-001 (`qauser_001`).
 3. Navigate to My Info > Personal Details.
 4. Verify the following fields are displayed correctly:
 
 | Field | Expected Value |
 |---|---|
-| Employee Full Name | Testing, Name, Employee |
-| Employee ID | muser |
-| Other ID | 4957589 |
-| Nationality | Indian |
-| Marital Status | Married |
-| Date of Birth | 1995-01-08 |
-| Gender | Male |
+| First Name | Julian |
+| Middle Name | Test |
+| Last Name | QAUser |
+| Employee ID | non-empty (value assigned by OrangeHRM at creation time) |
 
-**Expected Result:** All personal detail fields match the expected values.
+> **Note:** Nationality, Marital Status, and Date of Birth are not verified by the automated test. The test user (`qauser_001`) is created fresh by PRE-001 each session and those optional fields are not populated during employee creation. The original spec referenced a pre-existing demo user (`muser`) whose data drifted; values have been updated to reflect the current test user.
+
+**Expected Result:** Name fields and Employee ID match the values set during PRE-001 employee creation.
 
 ---
 

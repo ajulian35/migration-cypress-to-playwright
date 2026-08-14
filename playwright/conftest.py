@@ -65,3 +65,58 @@ def new_user_credentials():
         "emp_id": os.environ.get("NEW_EMP_ID", "0384"),
         "claim_ref_id": os.environ.get("CLAIM_REF_ID", "202608070000008"),
     }
+
+
+@pytest.fixture(scope="session", autouse=True)
+def cleanup_test_employee(browser_instance, runtime_data):
+    """Delete the employee created in pre_001 after the full session completes.
+
+    Best-effort: failures do not propagate to the test result. Uses runtime_data
+    to resolve the empNumber captured from the redirect URL; falls back to
+    NEW_EMP_NUMBER from .env when the employee already existed at run start.
+    """
+    yield  # All tests run first
+
+    base = os.environ.get("BASE_URL", "https://opensource-demo.orangehrmlive.com")
+    emp_number = runtime_data.get("emp_number") or os.environ.get("NEW_EMP_NUMBER", "")
+    if not emp_number:
+        return
+
+    ctx = None
+    try:
+        ctx = browser_instance.new_context(viewport={"width": 1280, "height": 720})
+        pg = ctx.new_page()
+
+        pg.goto(f"{base}/web/index.php/auth/login")
+        pg.fill('input[name="username"]', os.environ.get("TEST_USER_EMAIL", "Admin"))
+        pg.fill('input[name="password"]', os.environ.get("TEST_USER_PASSWORD", "admin123"))
+        pg.click('button[type="submit"]')
+        pg.wait_for_load_state("networkidle")
+
+        # Search for the employee by first+last name and delete via checkbox
+        pg.goto(f"{base}/web/index.php/pim/viewEmployeeList")
+        pg.wait_for_load_state("networkidle")
+        pg.locator('.oxd-input-group:has-text("First Name") input').fill(
+            os.environ.get("NEW_USER_FIRST", "Julian")
+        )
+        pg.locator('.oxd-input-group:has-text("Last Name") input').fill(
+            os.environ.get("NEW_USER_LAST", "QAUser")
+        )
+        pg.get_by_role("button", name="Search").click()
+        pg.wait_for_load_state("networkidle")
+
+        # Select the first result checkbox and delete
+        checkbox = pg.locator('.oxd-table-body .oxd-checkbox-input').first
+        if checkbox.count() > 0:
+            checkbox.click()
+            pg.get_by_role("button", name="Delete Selected").click()
+            pg.get_by_role("button", name="Yes, Delete").click()
+            pg.wait_for_load_state("networkidle")
+    except Exception:
+        pass  # Cleanup is best-effort; never fail the run
+    finally:
+        if ctx:
+            try:
+                ctx.close()
+            except Exception:
+                pass
