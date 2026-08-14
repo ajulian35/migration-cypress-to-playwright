@@ -11,8 +11,8 @@ describe('REQ-003: User Login (Valid Credentials)', () => {
 
   it('should redirect to Dashboard after login with valid credentials', () => {
     loginPage.login(
-      Cypress.env('TEST_USER_EMAIL'),
-      Cypress.env('TEST_USER_PASSWORD')
+      Cypress.env('NEW_USER_EMAIL'),
+      Cypress.env('NEW_USER_PASSWORD')
     );
 
     cy.url().should('include', '/dashboard/index');

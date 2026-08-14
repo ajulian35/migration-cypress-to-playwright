@@ -106,17 +106,15 @@ This assertion passes because the unfiltered list is non-empty — but the test 
 **Root cause:**  
 `page.wait_for_timeout` is a fixed sleep, not a condition wait. The 800 ms value was calibrated against the network conditions present during agent exploration. It does not adapt to variable latency.
 
-**Status:** Known limitation — not fixed in the prototype. The correct fix is to replace the fixed sleep with a condition-based wait:
+**Status:** Fixed. The fixed sleep was replaced with a condition-based wait using `wait_for_selector`:
 
 ```python
-self.page.wait_for_selector(
-    '.oxd-autocomplete-dropdown .oxd-autocomplete-option',
-    state='visible',
-    timeout=5000
-)
+self.page.fill(self.NAME_INPUT, name)
+self.page.wait_for_selector('[role="listbox"] [role="option"]', timeout=5000)
+self.page.locator('[role="listbox"] [role="option"]').filter(has_text=name).first.click()
 ```
 
-This would raise a clear `TimeoutError` on slow networks instead of silently degrading test scope.
+The locator was also tightened to filter options by the searched name, preventing the previous silent bug where the first autocomplete suggestion (which could belong to a different employee) was selected.
 
 ---
 

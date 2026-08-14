@@ -2,25 +2,29 @@ from playwright.sync_api import Page
 from .base_page import BasePage
 
 class EmployeeListPage(BasePage):
-    URL = "/web/index.php/pim/viewEmployeeList"
+    URL = "/web/index.php/directory/viewDirectory"
 
-    NAME_INPUT = '.oxd-input-group:has-text("Employee Name") .oxd-autocomplete-text-input input'
+    NAME_INPUT = 'input[placeholder="Type for hints..."]'
     SEARCH_BUTTON = 'button:has-text("Search")'
-    TABLE_ROWS = '.oxd-table-body .oxd-table-row'
+    RESULT_CARDS = '.orangehrm-directory-card'
+    RESULT_COUNT = '.orangehrm-directory-result-content, .orangehrm-container'
 
     def visit(self):
         self.navigate(self.URL)
+        self.page.wait_for_load_state("networkidle")
 
     def search_by_name(self, name: str):
         self.page.fill(self.NAME_INPUT, name)
-        self.page.wait_for_timeout(800)
-        suggestion = self.page.locator('.oxd-autocomplete-dropdown .oxd-autocomplete-option').first
-        if suggestion.is_visible():
-            suggestion.click()
+        self.page.wait_for_selector('[role="listbox"] [role="option"]', timeout=5000)
+        self.page.locator('[role="listbox"] [role="option"]').filter(has_text=name).first.click()
 
     def click_search(self):
         self.page.click(self.SEARCH_BUTTON)
-        self.page.wait_for_load_state("networkidle")
+        # Wait for results to update — either a card appears or "No Records Found"
+        self.page.wait_for_selector(
+            f'{self.RESULT_CARDS}, .oxd-text:has-text("No Records")',
+            timeout=15000
+        )
 
     def get_result_rows(self):
-        return self.page.locator(self.TABLE_ROWS)
+        return self.page.locator(self.RESULT_CARDS)

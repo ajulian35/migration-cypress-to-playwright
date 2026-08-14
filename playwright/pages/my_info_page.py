@@ -2,7 +2,7 @@ from playwright.sync_api import Page
 from .base_page import BasePage
 
 class MyInfoPage(BasePage):
-    URL = "/web/index.php/pim/viewPersonalDetails/empNumber/7"
+    URL = "/web/index.php/pim/viewMyDetails"
 
     def visit(self):
         self.navigate(self.URL)

@@ -1,7 +1,7 @@
 import { BasePage } from './BasePage';
 
 export class MyInfoPage extends BasePage {
-  protected url: string = '/web/index.php/pim/viewPersonalDetails/empNumber/7';
+  protected url: string = '/web/index.php/pim/viewMyDetails';
 
   getFirstName(): Cypress.Chainable<JQuery<HTMLElement>> {
     return cy.get('input[name="firstName"]');

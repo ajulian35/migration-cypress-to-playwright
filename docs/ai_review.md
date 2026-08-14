@@ -88,21 +88,15 @@ def search_by_name(self, name: str):
 
 `page.wait_for_timeout(800)` is a fixed 800 ms sleep. It was chosen to allow the autocomplete dropdown to appear after the name is typed. This is fragile: on a slow network or a loaded server, 800 ms may not be enough and the suggestion will not be visible, causing the step to skip the click silently. The test may then pass for the wrong reason (the search returns all employees rather than filtered ones).
 
-**Recommended replacement:**
+**Fix applied:** The fixed sleep was replaced with a condition-based wait and the locator was tightened to filter by name before clicking:
 
 ```python
 self.page.fill(self.NAME_INPUT, name)
-self.page.wait_for_selector(
-    '.oxd-autocomplete-dropdown .oxd-autocomplete-option',
-    state='visible',
-    timeout=5000
-)
-suggestion = self.page.locator('.oxd-autocomplete-dropdown .oxd-autocomplete-option').first
-if suggestion.is_visible():
-    suggestion.click()
+self.page.wait_for_selector('[role="listbox"] [role="option"]', timeout=5000)
+self.page.locator('[role="listbox"] [role="option"]').filter(has_text=name).first.click()
 ```
 
-This waits up to 5 seconds for the element to appear and throws a clear `TimeoutError` if it does not, rather than silently proceeding.
+This raises a clear `TimeoutError` if the dropdown does not appear, and guarantees the correct suggestion is selected rather than defaulting to the first item in the list.
 
 No other performance issues were identified. All other waits use `wait_for_load_state("networkidle")` or `wait_for_url(...)`, which are condition-based and correct.
 

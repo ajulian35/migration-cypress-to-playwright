@@ -1,7 +1,7 @@
 import { LoginPage } from '../pages/LoginPage';
 import { AddEmployeePage } from '../pages/AddEmployeePage';
 
-describe('REQ-005: Add Employee', () => {
+describe('PRE-001: Add Employee', () => {
   const loginPage = new LoginPage();
   const addEmployeePage = new AddEmployeePage();
 

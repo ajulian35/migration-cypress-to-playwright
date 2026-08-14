@@ -1,4 +1,4 @@
-from pytest_bdd import scenarios, when, then
+from pytest_bdd import scenarios, when, then, parsers
 from playwright.sync_api import Page
 from pages.employee_list_page import EmployeeListPage
 
@@ -9,7 +9,7 @@ def navigate_employee_list(page: Page, base_url: str):
     emp_list = EmployeeListPage(page, base_url)
     emp_list.visit()
 
-@when('I search for employee with name "{name}"')
+@when(parsers.cfparse('I search for employee with name "{name}"'))
 def search_employee(page: Page, base_url: str, name: str):
     emp_list = EmployeeListPage(page, base_url)
     emp_list.search_by_name(name)
@@ -24,13 +24,7 @@ def check_results_not_empty(page: Page, base_url: str):
     emp_list = EmployeeListPage(page, base_url)
     assert emp_list.get_result_rows().count() > 0
 
-@then('the results should contain an employee with name matching "{name}"')
+@then(parsers.cfparse('the results should contain an employee with name matching "{name}"'))
 def check_result_contains_name(page: Page, base_url: str, name: str):
-    emp_list = EmployeeListPage(page, base_url)
-    rows = emp_list.get_result_rows()
-    found = False
-    for i in range(rows.count()):
-        if name.lower() in (rows.nth(i).text_content() or "").lower():
-            found = True
-            break
-    assert found, f"No row found containing '{name}'"
+    matching = page.locator('.orangehrm-directory-card').filter(has_text=name)
+    assert matching.count() > 0, f"No directory card found containing '{name}'"

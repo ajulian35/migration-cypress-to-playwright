@@ -8,14 +8,14 @@ describe('REQ-007: User Logout', () => {
   beforeEach(() => {
     loginPage.visit();
     loginPage.login(
-      Cypress.env('TEST_USER_EMAIL'),
-      Cypress.env('TEST_USER_PASSWORD')
+      Cypress.env('NEW_USER_EMAIL'),
+      Cypress.env('NEW_USER_PASSWORD')
     );
     dashboardPage.isLoaded();
   });
 
   it('logs the user out and redirects to the login page', () => {
-    cy.contains('span', 'mandaa user').click();
+    cy.get('.oxd-userdropdown-tab').click();
     cy.get('[role="menuitem"]').contains('Logout').click();
 
     cy.url().should('include', '/auth/login');
