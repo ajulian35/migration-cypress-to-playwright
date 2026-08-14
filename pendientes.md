@@ -31,13 +31,13 @@
 > El L2 es un nivel diferente: ya no es solo migrar tests, es **construir y documentar un agente** que opere el workflow de migración de forma confiable.
 
 ### P5. Definición del problema agentic
-- [ ] Escribir un **problem statement** claro: dominio, usuario nombrado, y la decisión que el agente toma en su nombre. Debe justificar por qué un agente (decisión en runtime) es mejor que un script determinista.
-- [ ] Confirmar que el agente actual (`playwright-migration` en `.claude/agents/playwright-migration.md`) cumple con la definición: "el modelo decide qué hacer en runtime, no sigue una secuencia hardcodeada".
+- [x] Escribir un **problem statement** claro: dominio, usuario nombrado, y la decisión que el agente toma en su nombre. Debe justificar por qué un agente (decisión en runtime) es mejor que un script determinista. _(en `docs/problem_statement.md` sección "The Agent Decision" + "Why an Agent, Not a Deterministic Script")_
+- [x] Confirmar que el agente actual (`playwright-migration` en `.claude/agents/playwright-migration.md`) cumple con la definición: "el modelo decide qué hacer en runtime, no sigue una secuencia hardcodeada". _(confirmado y documentado en `docs/agent_architecture.md` sección "P5 Confirmation")_
 
 ### P6. Arquitectura del agente — componentes requeridos
-- [ ] **Al menos 2 herramientas** que el agente invoca documentadas explícitamente (ej. MCP Playwright browser, file-write tools, Read/Grep tools).
-- [ ] **Componente de memoria** con justificación del tier elegido (short-term / session / long-term). Documentar qué se almacena y por qué.
-- [ ] **Human validation gate** explícito antes de cualquier acción irreversible (ej. antes de sobrescribir tests, antes de hacer commit). Demostrar que existe en el flujo.
+- [x] **Al menos 2 herramientas** que el agente invoca documentadas explícitamente (ej. MCP Playwright browser, file-write tools, Read/Grep tools). _(3 tools en `docs/agent_architecture.md`: MCP Playwright, file-system tools, Bash/pytest)_
+- [x] **Componente de memoria** con justificación del tier elegido (short-term / session / long-term). Documentar qué se almacena y por qué. _(short-term in-context + CLAUDE.md session-persistent, justificado en `docs/agent_architecture.md`)_
+- [x] **Human validation gate** explícito antes de cualquier acción irreversible (ej. antes de sobrescribir tests, antes de hacer commit). Demostrar que existe en el flujo. _(Step 2.5 agregado en `.claude/agents/playwright-migration.md`; documentado en `docs/agent_architecture.md`)_
 
 ### P7. Manejo de fallos (obligatorio)
 - [ ] El agente debe **validar el output de las herramientas** en lugar de asumirlo correcto.
@@ -121,10 +121,10 @@ Todas las tareas agrupadas por categoría, ordenadas por prioridad.
 8. Idealmente repetir contra entorno estable (si no se puede containerizar, documentar la inestabilidad del demo compartido como limitación conocida con detalle técnico).
 
 ### D. AGENTE — ARQUITECTURA Y DOCUMENTACIÓN
-9. Documentar el agente de migración como sistema agentic: tools usadas, memory tier, human gate, failure handling.
-10. Definir y escribir el **problem statement** del agente: dominio, usuario, decisión delegada, justificación vs script.
-11. Escribir la **data provenance note** para L2 (OrangeHRM demo: qué representa, limitaciones, casos difíciles incluidos).
-12. Implementar o documentar el **human validation gate** explícito en el flujo del agente.
+9. ~~Documentar el agente de migración como sistema agentic: tools usadas, memory tier, human gate, failure handling.~~ ✅ `docs/agent_architecture.md`
+10. ~~Definir y escribir el **problem statement** del agente: dominio, usuario, decisión delegada, justificación vs script.~~ ✅ `docs/problem_statement.md`
+11. ~~Escribir la **data provenance note** para L2 (OrangeHRM demo: qué representa, limitaciones, casos difíciles incluidos).~~ ✅ `docs/problem_statement.md` sección "Data Provenance"
+12. ~~Implementar o documentar el **human validation gate** explícito en el flujo del agente.~~ ✅ Step 2.5 en `.claude/agents/playwright-migration.md`
 13. Documentar/implementar **failure handling**: validación de tool output, retry con razón de fallo, escalación.
 14. **Inyectar fallo deliberado** y capturar la respuesta del agente como evidencia.
 
